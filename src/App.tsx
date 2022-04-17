@@ -1,5 +1,6 @@
 import React from 'react';
 import {SafeAreaView, StatusBar, StyleSheet, Text} from 'react-native';
+import Keyboard from './components/Keyboard';
 import {theme} from './theme';
 
 const App = () => {
@@ -7,6 +8,7 @@ const App = () => {
     <SafeAreaView style={styles.rootContainer}>
       <StatusBar barStyle={'light-content'} />
       <Text style={styles.header}>WORDLE</Text>
+      <Keyboard />
     </SafeAreaView>
   );
 };
