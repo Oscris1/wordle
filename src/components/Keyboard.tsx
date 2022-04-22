@@ -15,10 +15,14 @@ const KEYS: string[][] = [
   ['DEL', 'ą', 'ę', 'ł', 'ć', 'ó', 'ś', 'ENTER'],
 ];
 
+interface Props {
+  handlePressButton: (key: string) => void;
+}
+
 const {width} = Dimensions.get('window');
 const KEY_WIDTH = (width - 20) / KEYS[0].length;
 
-const Keyboard = () => {
+const Keyboard: React.FC<Props> = ({handlePressButton}) => {
   const keyWidth = (key: string) => {
     if (key === 'DEL') return 60;
     if (key === 'ENTER') return 80;
@@ -31,7 +35,7 @@ const Keyboard = () => {
         <View style={styles.row}>
           {row.map(key => (
             <TouchableOpacity
-              onPress={() => console.log(key)}
+              onPress={() => handlePressButton(key)}
               style={[styles.key, {width: keyWidth(key)}]}>
               <Text style={styles.keyText}>{key}</Text>
             </TouchableOpacity>
@@ -55,7 +59,7 @@ const styles = StyleSheet.create({
   },
   key: {
     backgroundColor: theme.colors.keyBackground,
-    height: KEY_WIDTH * 1.2,
+    height: KEY_WIDTH * 1.3,
     justifyContent: 'center',
     alignItems: 'center',
     margin: 2,
