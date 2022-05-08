@@ -5,11 +5,24 @@ const {width} = Dimensions.get('window');
 interface Props {
   letter: string;
   wordLength: number;
+  isCurrentLetter: boolean;
+  color: string | null;
 }
 
-const LetterBox: React.FC<Props> = ({letter, wordLength}) => {
+const LetterBox: React.FC<Props> = ({
+  letter,
+  wordLength,
+  isCurrentLetter,
+  color,
+}) => {
   return (
-    <View style={[styles.container, {width: width / wordLength - 10}]}>
+    <View
+      style={[
+        styles.container,
+        isCurrentLetter && {borderColor: 'white', borderWidth: 2},
+        color !== null && {backgroundColor: color},
+        {width: width / wordLength - 10},
+      ]}>
       <Text style={{color: 'white', fontSize: 20}}>{letter}</Text>
     </View>
   );
